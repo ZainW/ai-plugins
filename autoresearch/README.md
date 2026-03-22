@@ -39,7 +39,7 @@ All state is written to `.autoresearch/` in append-only logs. If the session is 
 ## Installation
 
 ```bash
-/plugin marketplace add zain/autoresearch
+/plugin marketplace add ZainW/autoresearch
 ```
 
 ---
