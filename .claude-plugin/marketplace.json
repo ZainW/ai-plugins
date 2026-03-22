@@ -8,7 +8,7 @@
       "name": "autoresearch",
       "source": "./autoresearch",
       "description": "Autonomous research-driven coding for Claude Code. Researches options, presents choices, implements with full verification.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Zain"
       },
