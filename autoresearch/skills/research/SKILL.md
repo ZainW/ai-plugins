@@ -75,7 +75,7 @@ If the user runs `/research clear`:
    - Check `package.json` for current dependencies
    - Identify the scope of changes needed (count affected files)
 
-3. **Discover candidates**: Use WebSearch to find 3-5 candidate approaches. For dependency replacement, search for alternatives. For refactoring, search for patterns/best practices.
+3. **Discover candidates**: Use WebSearch to find 3-5 candidate approaches. For dependency replacement, search for alternatives. For refactoring, search for patterns/best practices. **If WebSearch is unavailable** (user hasn't permitted web tools), warn the user: "Web search is not available — research quality will be reduced. Consider allowing WebSearch/WebFetch for better results." Fall back to local analysis: check `node_modules/`, lock files, and existing `package.json` dependencies for known alternatives.
 
 4. **Read config** (if exists): Check `.autoresearch/config.json` for user overrides:
    ```json
