@@ -1,0 +1,11 @@
+{
+  "name": "autospec",
+  "description": "Spec-driven coding for Claude Code. Paste a spec, get reviewed code. Reviews specs for gaps, asks clarifying questions, routes to implementation based on prescriptiveness, and delivers verified code in an isolated branch.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Zain"
+  },
+  "homepage": "https://github.com/ZainW/autospec",
+  "repository": "https://github.com/ZainW/autospec",
+  "license": "MIT"
+}
