@@ -50,7 +50,7 @@ The plugin runs an autonomous loop: **research -> present options -> implement -
   1. After brief generation — confirm scope/priorities/constraints (presented as markdown summary; user responds "looks good" or types modifications in natural language)
   2. After evaluation — pick from top 3 options + "build custom"
 - Auto-fix loop retries up to 3 times (configurable) on verification failure before escalating to user
-- **No cost checkpoint** — designed for Claude Max plans with generous usage. Runs unencumbered by default.
+- **Cost-aware but non-blocking** — before implementation, the skill shows an estimated cost range. User confirms or adjusts. Designed for Claude Max plans but transparent about usage.
 - Usage is logged to `.autoresearch/log.jsonl` for after-the-fact review
 - Optional configurable limits via `.autoresearch/config.json` for users on API billing
 
@@ -386,6 +386,17 @@ The user can interrupt at any time by pressing Escape or Ctrl+C in Claude Code. 
 - The session resume hook detects the in-progress session on next startup
 - The user can run `/research` again to resume from the last checkpoint, or `/research clear` to reset
 
+### Cost Awareness
+
+Before dispatching the implementation phase (the most expensive part), the skill shows an estimated cost range based on codebase size and task complexity:
+
+```
+Estimated cost for implementation + verification: ~$5-15 (Opus high-effort, ~50 turns)
+Proceed? [Y/n]
+```
+
+This is informational, not a gate — designed for transparency. On Claude Max plans the cost is covered by the subscription. On API billing it helps users make informed decisions.
+
 ### Configuration
 
 Optional `.autoresearch/config.json` for users who want guardrails (e.g., API billing users):
@@ -398,7 +409,7 @@ Optional `.autoresearch/config.json` for users who want guardrails (e.g., API bi
 }
 ```
 
-All fields are optional. Defaults are tuned for Claude Max plans (generous/unlimited usage). The plugin never blocks on cost estimation — it logs usage to `log.jsonl` for after-the-fact review.
+All fields are optional. Defaults are tuned for Claude Max plans (generous/unlimited usage). Usage is logged to `log.jsonl` for after-the-fact review.
 
 ### Worktree Cleanup
 
