@@ -1,0 +1,11 @@
+{
+  "name": "autoresearch",
+  "description": "Autonomous research-driven coding for Claude Code. Research options, present choices, implement with full verification. Inspired by Andrej Karpathy's autoresearch concept and pi-autoresearch by davebcn87.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Zain"
+  },
+  "homepage": "https://github.com/zain/autoresearch",
+  "repository": "https://github.com/zain/autoresearch",
+  "license": "MIT"
+}
