@@ -7,18 +7,5 @@
   },
   "homepage": "https://github.com/ZainW/autoresearch",
   "repository": "https://github.com/ZainW/autoresearch",
-  "license": "MIT",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup|resume",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-resume.mjs\""
-          }
-        ]
-      }
-    ]
-  }
+  "license": "MIT"
 }
