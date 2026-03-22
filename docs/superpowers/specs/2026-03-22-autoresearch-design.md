@@ -49,7 +49,10 @@ The plugin runs an autonomous loop: **research -> present options -> implement -
 - **Two user checkpoints:**
   1. After brief generation — confirm scope/priorities/constraints (presented as markdown summary; user responds "looks good" or types modifications in natural language)
   2. After evaluation — pick from top 3 options + "build custom"
-- Auto-fix loop retries up to 3 times on verification failure before escalating to user
+- Auto-fix loop retries up to 3 times (configurable) on verification failure before escalating to user
+- **No cost checkpoint** — designed for Claude Max plans with generous usage. Runs unencumbered by default.
+- Usage is logged to `.autoresearch/log.jsonl` for after-the-fact review
+- Optional configurable limits via `.autoresearch/config.json` for users on API billing
 
 ### Verification Strategy
 
@@ -383,16 +386,19 @@ The user can interrupt at any time by pressing Escape or Ctrl+C in Claude Code. 
 - The session resume hook detects the in-progress session on next startup
 - The user can run `/research` again to resume from the last checkpoint, or `/research clear` to reset
 
-### Cost Awareness
+### Configuration
 
-Before dispatching the implementation phase (the most expensive part), the skill shows an estimated cost range based on codebase size and task complexity. Example:
+Optional `.autoresearch/config.json` for users who want guardrails (e.g., API billing users):
 
+```json
+{
+  "maxRetries": 3,
+  "maxImplementerTurns": 50,
+  "maxResearchers": 5
+}
 ```
-Estimated cost for implementation + verification: $5-15 (Opus high-effort, ~50 turns)
-Proceed? [Y/n]
-```
 
-This is the third and final user checkpoint. After confirmation, the implementation runs fully autonomously.
+All fields are optional. Defaults are tuned for Claude Max plans (generous/unlimited usage). The plugin never blocks on cost estimation — it logs usage to `log.jsonl` for after-the-fact review.
 
 ### Worktree Cleanup
 
